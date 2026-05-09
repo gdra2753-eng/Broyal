@@ -1,20 +1,15 @@
-FROM alpine:3.19
+FROM alpine:latest
 
-# تثبيت الأدوات
-RUN apk add --no-cache curl unzip
+RUN apk add --no-cache wget unzip
 
-# تحميل Xray
-RUN curl -L -o /tmp/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
-    && unzip /tmp/xray.zip -d /usr/local/bin/ \
-    && chmod +x /usr/local/bin/xray \
-    && rm -rf /tmp/xray.zip
+WORKDIR /app
 
-# نسخ ملف الإعداد
-COPY config.json /etc/xray/config.json
+RUN wget -O xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip \
+    && unzip xray.zip \
+    && chmod +x xray
 
-# Cloud Run يستخدم PORT تلقائياً
-ENV PORT=8080
+COPY config.json /app/config.json
 
 EXPOSE 8080
 
-CMD ["/usr/local/bin/xray", "-config", "/etc/xray/config.json"]
+CMD ["./xray", "-config", "config.json"]
