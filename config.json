@@ -1,4 +1,7 @@
 {
+  "log": {
+    "loglevel": "warning"
+  },
   "inbounds": [
     {
       "port": 8080,
@@ -6,7 +9,7 @@
       "settings": {
         "clients": [
           {
-            "password": "Zayd-Alg45" 
+            "password": "123456"
           }
         ]
       },
@@ -14,17 +17,15 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
-          "path": "/api"
-          "headers": {
-            "Host": "youtube.com"
-          }
+          "path": "/trojan"
         }
       }
     }
   ],
   "outbounds": [
     {
-      "protocol": "freedom"
+      "protocol": "freedom",
+      "settings": {}
     }
   ]
 }
