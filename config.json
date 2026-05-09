@@ -6,7 +6,7 @@
       "settings": {
         "clients": [
           {
-            "password": "123456"
+            "password": "Zayd-Alg45" 
           }
         ]
       },
@@ -14,7 +14,10 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
-          "path": "/trojan"
+          "path": "/api"
+          "headers": {
+            "Host": "youtube.com"
+          }
         }
       }
     }
