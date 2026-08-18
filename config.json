@@ -19,7 +19,7 @@
         "network": "ws",
         "security": "none",
         "wsSettings": {
-          "path": "/aws",
+          "path": "/apim",
           "maxEarlyData": 2048,
           "useBrowserForwarding": false
         },
