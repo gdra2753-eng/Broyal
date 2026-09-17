@@ -9,9 +9,7 @@
       "protocol": "trojan",
       "settings": {
         "clients": [
-          {
-            "password": "ABCD2"
-          }
+          { "password": "GCP404DZ" }
         ],
         "fallbacks": []
       },
@@ -21,7 +19,8 @@
         "wsSettings": {
           "path": "/apim",
           "maxEarlyData": 2048,
-          "useBrowserForwarding": false
+          "useBrowserForwarding": false,
+          "acceptProxyProtocol": false
         },
         "sockopt": {
           "tcpFastOpen": true,
@@ -29,19 +28,18 @@
           "tcpKeepAliveInterval": 15,
           "tcpKeepAliveIdle": 30,
           "tcpUserTimeout": 10000,
-          "tcpMaxSeg": 1440
+          "tcpMaxSeg": 1440,
+          "tcpMptcp": false
         }
       },
-      "sniffing": {
-        "enabled": false
-      }
+      "sniffing": { "enabled": false }
     }
   ],
   "outbounds": [
     {
       "protocol": "freedom",
       "settings": {
-        "domainStrategy": "UseIPv4",
+        "domainStrategy": "UseIPv4v6",
         "redirect": "",
         "userLevel": 0
       },
@@ -50,26 +48,27 @@
           "tcpFastOpen": true,
           "tcpNoDelay": true,
           "tcpKeepAliveInterval": 15,
-          "tcpKeepAliveIdle": 30,
-          "mark": 0
+          "tcpKeepAliveIdle": 30
         }
       }
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
     }
   ],
   "dns": {
-    "servers": [
-      "1.1.1.1",
-      "8.8.8.8"
-    ]
+    "servers": ["1.1.1.1", "1.0.0.1", "8.8.8.8"],
+    "queryStrategy": "UseIPv4v6"
   },
   "policy": {
     "levels": {
       "0": {
         "handshake": 4,
-        "connIdle": 300,
+        "connIdle": 180,
         "uplinkOnly": 2,
         "downlinkOnly": 5,
-        "bufferSize": 10240,
+        "bufferSize": 65536,
         "statsUserUplink": false,
         "statsUserDownlink": false
       }
